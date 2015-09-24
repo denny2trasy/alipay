@@ -179,6 +179,23 @@ module Alipay
       Net::HTTP.get(request_uri(params, options))
     end
 
+
+    TRADE_PRECREATE_REQUIRED_PARAMS = %w( out_trade_no subject total_fee )
+    # trade precreate
+    def self.trade_precreate(params, options = {})
+      params = Utils.stringify_keys(params)
+      check_required_params(params, TRADE_PRECREATE_REQUIRED_PARAMS)
+
+      params = {
+        'service'        => 'alipay.trade.precreate',
+        '_input_charset' => 'utf-8',
+        'partner'        => options[:pid] || Alipay.pid,
+        'seller_id'      => options[:pid] || Alipay.pid
+      }.merge(params)
+
+      Net::HTTP.get(request_uri(params, options))
+    end
+
     def self.request_uri(params, options = {})
       uri = URI(GATEWAY_URL)
       uri.query = URI.encode_www_form(sign_params(params, options))
