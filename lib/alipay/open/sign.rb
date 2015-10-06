@@ -4,6 +4,9 @@ module Alipay
     
       def self.generate(params)
         for_sign_string = Utils.stringify_keys_with_hash_value(params)
+
+        puts "++++ String Params = #{for_sign_string}"
+
         #读取私钥文件
         rsa_private_key_file = File.read(Alipay.rsa_private_key_file)
         #转换为openssl密钥

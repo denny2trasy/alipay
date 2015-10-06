@@ -9,6 +9,8 @@ module Alipay
         
         Alipay::Service.check_required_params(params, TRADE_PRECREATE_REQUIRED_PARAMS)
 
+        puts "+++++ Params= #{params}"
+
         full_params = {
           'app_id'        => Alipay.open_pid,
           'method'        => 'alipay.trade.precreate',
@@ -21,9 +23,15 @@ module Alipay
 
         sign = Alipay::Open::Sign.generate(full_params)
 
+        puts "+++++ Sign = #{sign}"
+
         url = request_uri(full_params.merge('sign' => sign))
 
+        puts "+++++ URL = #{url}"
+
         post_params = post_params(params)
+
+        puts "+++++ Post Params = #{post_params}"
 
         execution_options = {
           :method => :post, 
