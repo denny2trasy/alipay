@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Alipay
   module Open
     module Service
