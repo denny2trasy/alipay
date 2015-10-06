@@ -54,9 +54,10 @@ module Alipay
       end
 
       def self.request_uri(params)
-        uri = URI(GATEWAY_URL)
-        uri.query = URI.encode_www_form(params)
-        uri
+        pparams = params.map do |key, value|
+          "#{CGI.escape(key.to_s)}=#{CGI.escape(value.to_s)}"
+        end.join('&')
+        return "#{GATEWAY_URL}?#{pparams}"
       end
 
       def self.post_params(biz_content) 
