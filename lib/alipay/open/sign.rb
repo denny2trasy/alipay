@@ -11,10 +11,11 @@ module Alipay
         #读取私钥文件
         rsa_private_key_file = File.read(Alipay.rsa_private_key_file)
         #转换为openssl密钥
-        openssl_key = OpenSSL::PKey::RSA.new rsa_private_key_file
-        puts " +++++ Openssl Key = #{openssl_key}"
+        # openssl_key = OpenSSL::PKey::RSA.new rsa_private_key_file
+        # puts " +++++ Openssl Key = #{openssl_key}"
 
-        rsa = OpenSSL::PKey::RSA.new(openssl_key)
+        rsa = OpenSSL::PKey::RSA.new(rsa_private_key_file)
+        puts " +++++ Openssl Key = #{rsa}"
         signature = rsa.sign 'sha1', for_sign_string
 
         puts " ++++ Signature no encode = #{signature}"
