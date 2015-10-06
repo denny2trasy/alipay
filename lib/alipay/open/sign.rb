@@ -11,6 +11,8 @@ module Alipay
         rsa_private_key_file = File.read(Alipay.rsa_private_key_file)
         #转换为openssl密钥
         openssl_key = OpenSSL::PKey::RSA.new rsa_private_key_file
+
+        puts " +++++ Openssl Key = #{openssl_key}"
         #使用openssl方法进行sha1签名digest(不能用sha256)
         digest = OpenSSL::Digest::SHA1.new
         signature = openssl_key.sign digest, for_sign_string
