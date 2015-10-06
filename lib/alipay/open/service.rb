@@ -48,11 +48,9 @@ module Alipay
               return nil
             end
           else
-            nil
+            return nil
           end
         }
-
-
       end
 
       def self.request_uri(params)
@@ -61,8 +59,8 @@ module Alipay
         uri
       end
 
-      def self.post_params(biz_content)
-        return "biz_content=#{CGI.escape(biz_content.to_json.to_s)}"
+      def self.post_params(biz_content) 
+        "biz_content=#{CGI.escape(biz_content.to_json.to_s)}"
       end
 
     end
