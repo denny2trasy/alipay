@@ -61,7 +61,7 @@ module Alipay
         uri
       end
 
-      def post_params(biz_content)
+      def self.post_params(biz_content)
         return "biz_content=#{CGI.escape(biz_content.to_json.to_s)}"
       end
 
