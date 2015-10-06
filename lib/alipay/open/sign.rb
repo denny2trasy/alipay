@@ -16,8 +16,15 @@ module Alipay
         #使用openssl方法进行sha1签名digest(不能用sha256)
         digest = OpenSSL::Digest::SHA1.new
         signature = openssl_key.sign digest, for_sign_string
+
+        puts " ++++ Digest = #{digest}"
+        puts " ++++ Signature no encode = #{signature}"
+
         #base64编码
         signature = Base64.encode64(signature)
+
+        puts " ++++ Signature encoded = #{signature}"
+
         return signature.gsub("\n","")
       end
 
