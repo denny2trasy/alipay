@@ -20,7 +20,7 @@ module Alipay
 
         puts " ++++ Signature no encode = #{signature}"
 
-        signature = Base64.strict_encode64(signature)
+        signature = Base64.encode64(signature)
 
         puts " ++++ Signature encoded = #{signature}"
         
