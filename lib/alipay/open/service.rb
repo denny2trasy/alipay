@@ -22,7 +22,11 @@ module Alipay
           'notify_url'    => options['notify_url']
         }.merge('biz_content' => params)
 
+        puts "+++++ Full Params = #{full_params}"
+
         string_params = Utils.stringify_keys_with_hash_value(full_params)
+
+        puts "+++++ String Params = #{string_params}"
 
         sign = rsa_sign(string_params)
 
