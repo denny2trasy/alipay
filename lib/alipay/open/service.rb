@@ -24,7 +24,7 @@ module Alipay
 
         puts "+++++ Full Params = #{full_params}"
 
-        string_params = Utils.stringify_keys_with_hash_value(full_params)
+        string_params = stringify_params(full_params)
 
         puts "+++++ String Params = #{string_params}"
 
@@ -77,6 +77,19 @@ module Alipay
 
       def self.post_params(biz_content) 
         "biz_content=#{CGI.escape(biz_content.to_json.to_s)}"
+      end
+
+      # String Params for sign
+      def self.stringify_params(params)
+        result = []
+        params.sort.each do |key, value|
+          if value.class == Hash
+            result << "#{key.to_s}=#{value.to_json.to_s}"
+          else
+            result << "#{key.to_s}=#{value}"
+          end
+        end
+        result.join("&")
       end
 
       def self.rsa_sign for_sign_string
