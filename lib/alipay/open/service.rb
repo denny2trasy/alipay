@@ -12,7 +12,7 @@ module Alipay
 
         puts "+++++ Params= #{params}"
 
-        full_params = {
+        base_params = {
           'app_id'        => Alipay.open_pid,
           'method'        => 'alipay.trade.precreate',
           'charset'       => 'UTF-8',
@@ -20,11 +20,9 @@ module Alipay
           'timestamp'     => options['timestamp'],
           'version'       => "1.0",
           'notify_url'    => options['notify_url']
-        }.merge({'biz_content' => params})
+        }
 
-        puts "+++++ Full Params = #{full_params}"
-
-        string_params = stringify_params(full_params)
+        string_params = stringify_params(base_params.merge({'biz_content' => params}))
 
         puts "+++++ String Params = #{string_params}"
 
@@ -32,7 +30,7 @@ module Alipay
 
         puts "+++++ Sign = #{sign}"
 
-        url = request_uri(full_params.merge({'sign' => sign}))
+        url = request_uri(base_params.merge({'sign' => sign}))
 
         puts "+++++ URL = #{url}"
 
