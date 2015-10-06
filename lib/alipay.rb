@@ -20,6 +20,7 @@ module Alipay
 
   class << self
     attr_accessor :pid, :key, :sign_type, :debug_mode
+    attr_accessor :open_pid, :rsa_private_key_file, :rsa_public_key_file
 
     def debug_mode?
       !!@debug_mode

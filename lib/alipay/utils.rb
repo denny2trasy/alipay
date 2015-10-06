@@ -8,6 +8,18 @@ module Alipay
       new_hash
     end
 
+    def self.stringify_keys_with_hash_value(hash)
+      result = []
+      hash.sort.each do |key, value|
+        if value.class == Hash
+          result << "#{key.to_s}=#{value.to_json.to_s}"
+        else
+          result << "#{key.to_s}=#{value}"
+        end
+      end
+      result.join("&")
+    end
+
     # 退款批次号，支付宝通过此批次号来防止重复退款操作，所以此号生成后最好直接保存至数据库，不要在显示页面的时候生成
     # 共 24 位(8 位当前日期 + 9 位纳秒 + 1 位随机数)
     def self.generate_batch_no
