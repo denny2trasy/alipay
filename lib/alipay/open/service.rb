@@ -17,7 +17,7 @@ module Alipay
           'method'        => 'alipay.trade.precreate',
           'charset'       => 'UTF-8',
           'sign_type'     => 'RSA',
-          'timestamp'     =>  "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}",
+          'timestamp'     => options['timestamp'],
           'version'       => "1.0",
           'notify_url'    => options['notify_url']
         }.merge({'biz_content' => params})
