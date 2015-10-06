@@ -16,7 +16,7 @@ module Alipay
 
         rsa = OpenSSL::PKey::RSA.new(rsa_private_key_file)
         puts " +++++ Openssl Key = #{rsa}"
-        signature = rsa.sign 'sha1', for_sign_string
+        signature = rsa.sign 'sha', for_sign_string
 
         puts " ++++ Signature no encode = #{signature}"
 
