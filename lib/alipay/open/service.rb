@@ -7,7 +7,7 @@ module Alipay
       # 扫描支付 － 预下单请求
       def self.trade_precreate(params, options = {})
         
-        Alipay::Service.check_required_params(params, TRADE_CREATE_BY_BUYER_REQUIRED_PARAMS)
+        Alipay::Service.check_required_params(params, TRADE_PRECREATE_REQUIRED_PARAMS)
 
         full_params = {
           'app_id'        => Alipay.open_pid,
