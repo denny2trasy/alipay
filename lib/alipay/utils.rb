@@ -1,4 +1,3 @@
-# encoding: utf-8
 module Alipay
   module Utils
     def self.stringify_keys(hash)

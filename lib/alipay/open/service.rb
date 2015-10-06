@@ -1,4 +1,3 @@
-# encoding: utf-8
 module Alipay
   module Open
     module Service
@@ -10,8 +9,6 @@ module Alipay
         
         Alipay::Service.check_required_params(params, TRADE_PRECREATE_REQUIRED_PARAMS)
 
-        puts "+++++ Params= #{params}"
-
         base_params = {
           'app_id'        => Alipay.open_pid,
           'method'        => 'alipay.trade.precreate',
@@ -22,21 +19,11 @@ module Alipay
           'notify_url'    => options['notify_url']
         }
 
-        string_params = stringify_params(base_params.merge({'biz_content' => params}))
-
-        puts "+++++ String Params = #{string_params}"
-
-        sign = rsa_sign(string_params)
-
-        puts "+++++ Sign = #{sign}"
+        sign = Alipay::Open::Sign.generate(base_params.merge({'biz_content' => params}))
 
         url = request_uri(base_params.merge({'sign' => sign}))
 
-        puts "+++++ URL = #{url}"
-
         post_params = post_params(params)
-
-        puts "+++++ Post Params = #{post_params}"
 
         execution_options = {
           :method => :post, 
