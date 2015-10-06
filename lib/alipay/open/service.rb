@@ -20,7 +20,7 @@ module Alipay
           'timestamp'     =>  "#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}",
           'version'       => "1.0",
           'notify_url'    => options['notify_url']
-        }.merge('biz_content' => params)
+        }.merge({'biz_content' => params})
 
         puts "+++++ Full Params = #{full_params}"
 
@@ -32,7 +32,7 @@ module Alipay
 
         puts "+++++ Sign = #{sign}"
 
-        url = request_uri(full_params.merge('sign' => sign))
+        url = request_uri(full_params.merge({'sign' => sign}))
 
         puts "+++++ URL = #{url}"
 
